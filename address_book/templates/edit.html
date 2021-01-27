@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+  {% block content %}
+      <h1>Edit Address</h1>
+      <br>
+      {% if get_address %}
+      <form method="POST">
+        {% csrf_token %}
+        <div class="mb-3">
+          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{get_address.name}}" name="name">
+        </div>
+        <div class="mb-3">
+          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{get_address.email}}" name="email">
+        </div>
+        <div class="mb-3">
+          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{get_address.phone}}" name="phone">
+        </div>
+        <div class="mb-3">
+          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{get_address.address}}" name="address">
+        </div>
+        <div class="mb-3">
+          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{get_address.city}}" name="city">
+        </div>
+        <div class="mb-3">
+          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{get_address.state}}" name="state">
+        </div>
+        <div class="mb-3">
+          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{get_address.country}}" name="country">
+        </div>
+        <div class="mb-3">
+          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{get_address.pincode}}" name="pincode">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Edit</button>
+      </form>
+      <br><br>
+      <form action="{% url 'delete_address' get_address.id %}" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="id" value="{{get_address.id}}">
+            <button type="submit" class="btn btn-warning">Delete Address</button>
+          </form>
+      </div>
+
+    {% endif %}
+  {% endblock %}
